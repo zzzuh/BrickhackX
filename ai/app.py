@@ -4,7 +4,8 @@ from ai import Ai
 
 app = Flask(__name__)
 ai = Ai()
-CORS(app)  # This enables CORS for all routes
+# CORS(app)  # This enables CORS for all routes
+CORS(app, resources={r"/api/*": {"origins": "http://reflick.co"}})
 
 @app.route('/api/classify', methods=['POST'])
 def classify_image():
@@ -21,4 +22,4 @@ def classify_image():
         return jsonify(error='an error occurred'), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

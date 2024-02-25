@@ -1,29 +1,37 @@
 import { useContext } from "react"
 import { ImageContext } from "../App"
 import axios from "axios"
+import SpinnerIcon from "./SpinnerIcon"
 
 const ImageUpload = () => {
-    const { setImage, setShowInfo, setResponse} = useContext(ImageContext)
+    const { setImage, setShowInfo, setResponse, isLoading, setIsLoading} = useContext(ImageContext)
 
     const handleImage = async (e) => {
+        setIsLoading(true)
         e.preventDefault()
         setImage(e.target.files[0])
         const formData = new FormData()
         formData.append("image", e.target.files[0])
         setShowInfo(true)
-        // if (e.target.files[0]) {
-        //     try {
-        //         const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
-        //             headers: {
-        //                 'Content-Type': 'multipart/formdata'
-        //             },
-        //         })
-        //         setResponse(apiResponse.data.result)
-        //         setShowInfo(true)
-        //     } catch (error) {
-        //         console.log(error)
-        //     }
-        // }
+        if (e.target.files[0]) {
+            try {
+                const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
+                    headers: {
+                        'Content-Type': 'multipart/formdata'
+                    },
+                })
+                setResponse(apiResponse.data.result)
+                console.log(apiResponse.data.result)
+                setShowInfo(true)
+                setIsLoading(false)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
+
+    if (isLoading) {
+        return <SpinnerIcon></SpinnerIcon>
     }
 
     return (

@@ -4,7 +4,7 @@ import axios from "axios"
 import SpinnerIcon from "./SpinnerIcon"
 
 const ImageUpload = () => {
-    const { setImage, setShowInfo, setResponse, isLoading, setIsLoading} = useContext(ImageContext)
+    const { setImage, setShowInfo, setResponse, isLoading, setIsLoading, location} = useContext(ImageContext)
 
     const handleImage = async (e) => {
         setIsLoading(true)
@@ -12,6 +12,7 @@ const ImageUpload = () => {
         setImage(e.target.files[0])
         const formData = new FormData()
         formData.append("image", e.target.files[0])
+        formData.append('location', location || "")
         setShowInfo(true)
         if (e.target.files[0]) {
             try {

@@ -1,11 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from ai import Ai
+import os
 
 app = Flask(__name__)
 ai = Ai()
 CORS(app)  # This enables CORS for all routes
-CORS(app, resources={r"/api/*": {"origins": "https://reflick.co"}})
+#CORS(app, resources={r"*/api/*": {"origins": "https://reflick.co"}})
 
 @app.route('/api/classify', methods=['POST'])
 def classify_image():
@@ -22,4 +23,5 @@ def classify_image():
         return jsonify(error='an error occurred'), 500
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    port = int(os.environ.get('PORT', 5000))  # Fallback to 5000 if PORT is not set
+    app.run(host='0.0.0.0', port=port, debug=False)

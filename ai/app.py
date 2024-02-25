@@ -12,10 +12,11 @@ def get_data():
 
 @app.route('/api/classify', methods=['POST'])
 def classify_image():
-    if 'file' not in request.files:
+    if 'image' not in request.files:
         return jsonify(error='file not provided'), 400
     
-    file = request.files['file']
+    file = request.files['image']
+    print(file)
     if file:
         image_blob = file.read()
         predictions = ai.classify_image(image_blob)

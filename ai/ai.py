@@ -19,19 +19,20 @@ class Ai():
         self.num_predictions = num_predictions
 
     def generate_description(self, item):
-        content = f"You are a recycling specialist. Limit all response to 2 sentences. How can I recycle a {item}. Please respond in the format of JSON: Recycle: (how to recycle {item}) Description: (how {item} affect the environment)"
+        content = f"You are a recycling specialist. Limit all response to 2 sentences. How can I recycle a {item}. Please respond in the format of JSON: Item: {item} Recycle: (how to recycle {item}) Description: (how {item} affect the environment)"
         print(content)
         gpt_response = self.openai_client.chat.completions.create(
             model=self.openai_model,
+            response_format={ "type": "json_object" },
             messages=[
                 {"role": "user", "content": content}            
             ]
         )
         response_json = json.loads(gpt_response.choices[0].message.content)
-        print(response_json)
         return response_json
     
-    def classify_image(self, image_blob):
+    def classify_image(self, image_bytes):
+        image_blob = io.BytesIO(image_bytes)
         image = Image.open(image_blob)
         inputs = self.processor(images=image, return_tensors="pt")
         outputs = self.huggingface_model(**inputs)

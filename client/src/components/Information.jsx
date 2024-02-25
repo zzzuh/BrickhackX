@@ -9,9 +9,9 @@ const Information = ({itemName, itemRecycle}) => {
         e.preventDefault()
         setImage(e.target.files[0] || image)
         const formData = new FormData()
-        formData.append("image", image)
+        formData.append("image", e.target.files[0] || image)
         try {
-            const apiResponse = await axios.post("endpoint", formData, {
+            const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
                 headers: {
                     'Content-Type': 'multipart/formdata'
                 },

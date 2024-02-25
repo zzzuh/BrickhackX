@@ -3,6 +3,7 @@ import ImageUpload from './components/ImageUpload';
 import NavigatorBar from './components/NavigatorBar';
 import { createContext, useState } from 'react';
 import Information from './components/Information';
+import StateComponent from './components/State';
 
 export const ImageContext = createContext()
 
@@ -16,7 +17,10 @@ function App() {
     <div className=' flex h-screen flex-col'>
       <NavigatorBar></NavigatorBar>
       <div className='flex items-center justify-center h-screen flex-col'>
-        <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, formData, setFormData, response, setResponse}}>
+        <div className="mb-4">
+          <StateComponent></StateComponent>
+        </div>
+        <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, response, setResponse}}>
           {showInfo ? <Information itemName={"lol"} itemRecycle={"lol"}/> : <ImageUpload/>} 
         </ImageContext.Provider>
       </div>

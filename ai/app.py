@@ -17,8 +17,8 @@ def classify_image():
     
     file = request.files['file']
     if file:
-        # image_blob = file.read()
-        # predictions = ai.classify_image(image_blob)
+        image_blob = file.read()
+        predictions = ai.classify_image(image_blob)
         predictions = ai.test_classify_image()
         return jsonify(predictions=predictions)
     else:

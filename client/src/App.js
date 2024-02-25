@@ -13,6 +13,7 @@ function App() {
   const [response, setResponse] = useState(null)
 
   console.log(response)
+
   return (
     <div className='flex h-screen flex-col'>
       
@@ -24,7 +25,7 @@ function App() {
           <StateComponent></StateComponent>
         </div>
         <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, response, setResponse}}>
-          {showInfo ? <Information itemName={"lol"} itemRecycle={"lol"}/> : <ImageUpload/>} 
+          {showInfo ? <Information/> : <ImageUpload/>} 
         </ImageContext.Provider>
       </div>
     </div>

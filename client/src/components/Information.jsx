@@ -2,8 +2,8 @@ import { useContext } from "react"
 import { ImageContext } from "../App"
 import axios from "axios"
 
-const Information = ({itemName, itemRecycle}) => {
-    const {image, setImage, setResponse} = useContext(ImageContext) 
+const Information = () => {
+    const {image, setImage, response, setResponse} = useContext(ImageContext) 
 
     const handleChange = async (e) => {
         e.preventDefault()
@@ -11,12 +11,13 @@ const Information = ({itemName, itemRecycle}) => {
         const formData = new FormData()
         formData.append("image", e.target.files[0] || image)
         try {
+            console.log(formData)
             const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
                 headers: {
                     'Content-Type': 'multipart/formdata'
                 },
             })
-            setResponse(apiResponse)
+            setResponse(apiResponse.data.result)
         } catch (error) {
             console.log(error)
         }
@@ -29,11 +30,14 @@ const Information = ({itemName, itemRecycle}) => {
             <div className="flex items-center justify-center flex-col w-4/12 h-max border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-dropbox-green hover:bg-hover-green py-3">
                 <div className="flex flex-col items-center w-full">
                     <h1 className="text-white 2xl:text-4xl text-xl">
-                        {itemName}
+                        {response.Item}
                     </h1>
                     <img src={imgURL} alt="uploaded" className="px-2"></img>
+                    <p className="px-4 py-6 text-white 2xl:text-base text-xs font-semibold">
+                        {response.Recycle}
+                    </p>
                     <p className="px-4 py-6 text-white 2xl:text-base text-xs">
-                        {itemRecycle}
+                        {response.Description}
                     </p>
                     <input type="file" id="file" className="bg-white" onChange={handleChange}></input>
                 </div>

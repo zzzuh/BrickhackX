@@ -3,23 +3,25 @@ import { ImageContext } from "../App"
 import axios from "axios"
 
 const ImageUpload = () => {
-    const { image, setImage, setShowInfo, setResponse} = useContext(ImageContext)
+    const { setImage, setShowInfo, setResponse} = useContext(ImageContext)
 
     const handleImage = async (e) => {
         e.preventDefault()
         setImage(e.target.files[0])
-        setShowInfo(true)
         const formData = new FormData()
         formData.append("image", e.target.files[0])
-        try {
-            const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
-                headers: {
-                    'Content-Type': 'multipart/formdata'
-                },
-            })
-            setResponse(apiResponse)
-        } catch (error) {
-            console.log(error)
+        if (e.target.files[0]) {
+            try {
+                const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
+                    headers: {
+                        'Content-Type': 'multipart/formdata'
+                    },
+                })
+                setResponse(apiResponse.data.result)
+                setShowInfo(true)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 

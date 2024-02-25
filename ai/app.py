@@ -6,7 +6,6 @@ import os
 app = Flask(__name__)
 ai = Ai()
 CORS(app)  # This enables CORS for all routes
-#CORS(app, resources={r"*/api/*": {"origins": "https://reflick.co"}})
 
 @app.route('/api/classify', methods=['POST'])
 def classify_image():

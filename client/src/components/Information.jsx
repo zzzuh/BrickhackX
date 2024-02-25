@@ -1,6 +1,6 @@
 const Information = ({itemName, itemRecycle}) => {
     return (
-        <div>
+        <div className="flex w-full ">
             <h2>{itemName}</h2>
             <a>{itemRecycle}</a>
         </div>

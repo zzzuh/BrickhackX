@@ -1,8 +1,12 @@
-const ImageDisplay = ({imageURL}) => {
-    const image = imageURL
+import { useContext } from "react"
+import { ImageContext } from "../App"
+
+const ImageDisplay = () => {
+    const { image } = useContext(ImageContext)
 
     if (image) {
-        return (<img src={imageURL} alt="uploaded"></img>)
+        const src = URL.createObjectURL(image)
+        return (<img src={src} alt="uploaded"></img>)
     } else {
         return null
     }

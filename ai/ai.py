@@ -37,7 +37,7 @@ class Ai():
         base64_image = base64.b64encode(image_bytes).decode('utf-8')
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {os.environ.get("OPENAI_API_KEY")}"
+            "Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY')}"
         }
         payload = {
         "model": "gpt-4-vision-preview",

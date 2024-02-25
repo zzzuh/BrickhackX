@@ -16,7 +16,7 @@ const ImageUpload = () => {
         setShowInfo(true)
         if (e.target.files[0]) {
             try {
-                const apiResponse = await axios.post("https://brickhack-x-al9379-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/api/classify", formData, {
+                const apiResponse = await axios.post("https://3.21.44.127/api/classify", formData, {
                     headers: {
                         'Content-Type': 'multipart/formdata'
                     },

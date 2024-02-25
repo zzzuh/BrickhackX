@@ -5,7 +5,7 @@ const NavigatorBar = () => {
             <img src="/minil.png" className="h-6" alt="ReFlick Logo" />
         </div>
         <div className='flex items-center'>
-            <button class="bg-white hover:bg-gray-300 text-black font-bold py-2 px-4 rounded-full">
+            <button className="bg-white hover:bg-gray-300 text-black font-bold py-2 px-4 rounded-full">
             User</button>
         </div>
     </nav>

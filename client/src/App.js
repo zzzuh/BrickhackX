@@ -1,19 +1,23 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import ImageUpload from './components/ImageUpload';
+import ImageDisplay from './components/ImageDisplay';
+import NavigatorBar from './components/NavigatorBar';
+import { createContext, useState } from 'react';
+
+export const ImageContext = createContext()
 
 function App() {
-
-  useEffect(() => {
-    fetch('http://localhost:5000/api/test')
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error("Error fetching data:", error));
-  }, []); 
-
+  const [image, setImage] = useState()
   return (
-    <>
-      GG
-    </>
+    <div className=' flex h-screen flex-col'>
+      <NavigatorBar></NavigatorBar>
+      <div className='flex items-center justify-center h-screen flex-col'>
+        <ImageContext.Provider value={{image, setImage}}>
+          <ImageUpload></ImageUpload>
+          <ImageDisplay></ImageDisplay>
+        </ImageContext.Provider>
+      </div>
+    </div>
   );
 }
 

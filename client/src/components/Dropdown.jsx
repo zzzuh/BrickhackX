@@ -1,4 +1,13 @@
+import { useContext } from "react";
+import { ImageContext } from "../App";
+
 const Dropdown = ({ options }) => {
+  const {setLocation} = useContext(ImageContext)
+
+  const handleChange = (e) => {
+    e.preventDefault()
+    setLocation(e.target.value)
+  }
     return (
       <select 
         style={{ 
@@ -6,6 +15,7 @@ const Dropdown = ({ options }) => {
           height: '40px', 
           borderRadius: '5px' // Adding rounded corners
         }}
+        onChange={handleChange}
       >
         <option value="">Select a location</option>
         {options.map((option, index) => {

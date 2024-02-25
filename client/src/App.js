@@ -12,6 +12,7 @@ function App() {
   const [showInfo, setShowInfo] = useState(false)
   const [response, setResponse] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [location, setLocation] = useState(null)
 
   console.log(response)
 
@@ -21,12 +22,12 @@ function App() {
         <div className='flex justify-center top-20 w-full py-20'>
           <NavigatorBar></NavigatorBar>
         </div>
+        <ImageContext.Provider value={{location, setLocation, image, setImage, showInfo, setShowInfo, response, setResponse, isLoading, setIsLoading}}>
         <div className="mt-15 mb-4">
-          <StateComponent></StateComponent>
+            <StateComponent></StateComponent>
         </div>
-          <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, response, setResponse, isLoading, setIsLoading}}>
             {showInfo ? <Information/> : <ImageUpload/>} 
-          </ImageContext.Provider>
+        </ImageContext.Provider>
       </div>
     </div>
   );

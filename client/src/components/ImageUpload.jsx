@@ -10,19 +10,20 @@ const ImageUpload = () => {
         setImage(e.target.files[0])
         const formData = new FormData()
         formData.append("image", e.target.files[0])
-        if (e.target.files[0]) {
-            try {
-                const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
-                    headers: {
-                        'Content-Type': 'multipart/formdata'
-                    },
-                })
-                setResponse(apiResponse.data.result)
-                setShowInfo(true)
-            } catch (error) {
-                console.log(error)
-            }
-        }
+        setShowInfo(true)
+        // if (e.target.files[0]) {
+        //     try {
+        //         const apiResponse = await axios.post("http://127.0.0.1:5000/api/classify", formData, {
+        //             headers: {
+        //                 'Content-Type': 'multipart/formdata'
+        //             },
+        //         })
+        //         setResponse(apiResponse.data.result)
+        //         setShowInfo(true)
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        // }
     }
 
     return (

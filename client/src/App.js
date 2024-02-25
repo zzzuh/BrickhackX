@@ -15,18 +15,18 @@ function App() {
   console.log(response)
 
   return (
-    <div className='flex h-screen flex-col'>
+    <div className='flex flex-col'>
       
-      <div className='flex items-center justify-center h-screen flex-col'>
-        <div className='flex justify-center top-20 w-full pb-20'>
+      <div className='flex items-center justify-center flex-col'>
+        <div className='flex justify-center top-20 w-full py-20'>
           <NavigatorBar></NavigatorBar>
         </div>
         <div className="mt-15 mb-4">
           <StateComponent></StateComponent>
         </div>
-        <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, response, setResponse}}>
-          {showInfo ? <Information/> : <ImageUpload/>} 
-        </ImageContext.Provider>
+          <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, response, setResponse}}>
+            {showInfo ? <Information/> : <ImageUpload/>} 
+          </ImageContext.Provider>
       </div>
     </div>
   );

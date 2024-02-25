@@ -19,8 +19,9 @@ def classify_image():
     if file:
         image_blob = file.read()
         predictions = ai.classify_image(image_blob)
-        predictions = ai.test_classify_image()
-        return jsonify(predictions=predictions)
+        # predictions = ai.test_classify_image()
+        result = ai.generate_description(predictions[0][0])
+        return jsonify(result=result)
     else:
         return jsonify(error='an error occurred'), 500
 

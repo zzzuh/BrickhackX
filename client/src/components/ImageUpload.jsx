@@ -16,7 +16,9 @@ const ImageUpload = () => {
         setShowInfo(true)
         if (e.target.files[0]) {
             try {
+
                 const apiResponse = await axios.post("https://reflick-flask-d5ccad44d3fb.herokuapp.com/api/classify", formData, {
+           
                     headers: {
                         'Content-Type': 'multipart/formdata'
                     },

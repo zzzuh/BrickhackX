@@ -11,12 +11,12 @@ function App() {
   const [image, setImage] = useState()
   const [showInfo, setShowInfo] = useState(false)
   const [response, setResponse] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   console.log(response)
 
   return (
     <div className='flex flex-col'>
-      
       <div className='flex items-center justify-center flex-col'>
         <div className='flex justify-center top-20 w-full py-20'>
           <NavigatorBar></NavigatorBar>
@@ -24,7 +24,7 @@ function App() {
         <div className="mt-15 mb-4">
           <StateComponent></StateComponent>
         </div>
-          <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, response, setResponse}}>
+          <ImageContext.Provider value={{image, setImage, showInfo, setShowInfo, response, setResponse, isLoading, setIsLoading}}>
             {showInfo ? <Information/> : <ImageUpload/>} 
           </ImageContext.Provider>
       </div>

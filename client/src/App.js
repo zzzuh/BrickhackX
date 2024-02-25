@@ -17,9 +17,9 @@ function App() {
     <div className='flex h-screen flex-col'>
       
       <div className='flex items-center justify-center h-screen flex-col'>
-      <div className='flex justify-center absolute top-20 w-full'>
-        <NavigatorBar></NavigatorBar>
-      </div>
+        <div className='flex justify-center top-20 w-full pb-20'>
+          <NavigatorBar></NavigatorBar>
+        </div>
         <div className="mt-15 mb-4">
           <StateComponent></StateComponent>
         </div>

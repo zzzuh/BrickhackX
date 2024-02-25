@@ -14,7 +14,7 @@ const Information = () => {
         formData.append("image", e.target.files[0] || image)
         formData.append('location', location || "")
         try {
-            const apiResponse = await axios.post("https://reflick-flask-d5ccad44d3fb.herokuapp.com/api/classify", formData, {
+            const apiResponse = await axios.post("https://3.21.44.127/api/classify", formData, {
                 headers: {
                     'Content-Type': 'multipart/formdata'
                 },

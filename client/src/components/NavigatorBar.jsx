@@ -5,6 +5,5 @@ const NavigatorBar = () => {
         </div>
     );
   };
-  
+
   export default NavigatorBar;
-  

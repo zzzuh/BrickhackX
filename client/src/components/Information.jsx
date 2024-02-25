@@ -41,7 +41,10 @@ const Information = () => {
                     <p className="px-4 py-6 text-white 2xl:text-base text-xs">
                         p
                     </p>
-                    <input type="file" id="file" className="bg-white" onChange={handleChange}></input>
+                    <label htmlFor="file" className="bg-gray-100 text-black hover:bg-gray-300 font-semibold py-2 px-4 rounded-full cursor-pointer">
+                    Upload Image
+                    <input type="file" id="file" className="hidden" onChange={handleChange} />
+                    </label>
                 </div>
             </div>
         </div>

@@ -5,7 +5,12 @@ module.exports = {
     'node_modules/flowbite-react/lib/esm/**/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'dropbox-green': '#9DBC98',
+        'hover-green': '#89A684'
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin'),

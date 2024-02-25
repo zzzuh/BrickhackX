@@ -13,8 +13,9 @@ class Ai():
         self.openai_model_classify = openai_model_classify
         self.openai_model_description = openai_model_description
 
-    def generate_description_gpt(self, item):
-        content = f"You are a recycling specialist. Limit all response to 2 sentences. How can I recycle a {item}. Please respond in the format of JSON: Item: {item} Recycle: (how to recycle {item}) Description: (how {item} affect the environment)"
+    def generate_description_gpt(self, item, location=""):
+        content = f"You are a recycling specialist at {location}. Limit all response to 2 sentences. How can I recycle a {item}. Please respond in the format of JSON: Item: {item} Recycle: (how to recycle {item}) Description: (how {item} affect the environment)"
+        print(content)
         gpt_response = self.openai_client.chat.completions.create(
             model=self.openai_model_description,
             response_format={ "type": "json_object" },

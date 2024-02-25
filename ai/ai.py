@@ -7,6 +7,8 @@ import tkinter as tk
 import io
 import os
 import json
+import base64
+import requests
 from tkinter import filedialog
 
 class Ai():
@@ -31,6 +33,37 @@ class Ai():
         response_json = json.loads(gpt_response.choices[0].message.content)
         return response_json
     
+    def classify_image_gpt_4(self, image_bytes):
+        base64_image = base64.b64encode(image_bytes).decode('utf-8')
+        headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {os.environ.get("OPENAI_API_KEY")}"
+        }
+        payload = {
+        "model": "gpt-4-vision-preview",
+        "messages": [
+            {
+            "role": "user",
+            "content": [
+                {
+                "type": "text",
+                "text": "What is this image in 1 to 2 words?"
+                },
+                {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:image/jpeg;base64,{base64_image}"
+                }
+                }
+            ]
+            }
+        ],
+        "max_tokens": 300
+        }
+        response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
+        print(response.json()["choices"][0]["message"]["content"])
+        return response.json()["choices"][0]["message"]["content"]
+    
     def classify_image(self, image_bytes):
         image_blob = io.BytesIO(image_bytes)
         image = Image.open(image_blob)
@@ -43,8 +76,8 @@ class Ai():
         return predictions
     
     def test_classify_image(self):
-        # image_file_path = filedialog.askopenfilename()
-        image_file_path = "./bottles.jpg"
+        image_file_path = filedialog.askopenfilename()
+        # image_file_path = "./bottles.jpg"
         with open(image_file_path, 'rb') as f:
             image_bytes = f.read()
         image_blob = io.BytesIO(image_bytes)
@@ -61,7 +94,7 @@ class Ai():
         return predictions
 
 if __name__ == "__main__":
-        a = Ai(3)
+        a = Ai(20)
         item = a.test_classify_image()
-        print(item)
-        print(a.generate_description(item=item[0][0]))
+        # print(item)/
+        # print(a.generate_description(item=item[0][0]))
